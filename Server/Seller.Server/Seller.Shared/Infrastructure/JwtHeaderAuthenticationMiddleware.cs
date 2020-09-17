@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Seller.Shared.Infrastructure
+﻿namespace Seller.Shared.Infrastructure
 {
     using System.Linq;
     using System.Threading.Tasks;

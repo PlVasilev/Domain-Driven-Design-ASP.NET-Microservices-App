@@ -10,13 +10,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-
+  //selectedQuantity:string
   constructor(
     private userService: UserService,
     private toastrService: ToastrService,
     private router: Router) { }
 
   ngOnInit() {
+    // this.selectedQuantity = "000"
   }
   registerHandler(formValue) {
     const { username, password } = formValue;

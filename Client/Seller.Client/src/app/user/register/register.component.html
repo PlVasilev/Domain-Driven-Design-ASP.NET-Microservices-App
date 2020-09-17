@@ -52,17 +52,31 @@
                         <div *ngIf="emailInput.errors && emailInput.touched" class="invalid-feedback">You must enter
                             valid Email</div>
                     </div>
+                    <!-- <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                        </div>
+                        <select name="selectedQuantity" id="aantal" class="form-control" #codeInput="ngModel" [ngModel]="selectedQuantity">
+                            <option [value]="selectedQuantity" [selected] ="true">Phone Number Country Code</option>
+                            <option value='00359'>Bulgaria</option>
+                            <option value='001'>USA</option>
+                        </select>
+                    </div> -->
                     <div class="form-group input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
                         </div>
                         <input #phoneNumberInput="ngModel" ngModel name="phoneNumber" class="form-control"
-                            placeholder="Phone number" [class.is-valid]="!phoneNumberInput.errors && phoneNumberInput.touched"
-                            [class.is-invalid]="phoneNumberInput.errors && phoneNumberInput.touched" required pattern="\d{3,}"
-                            type="text">
-                        <div *ngIf="phoneNumberInput.errors && phoneNumberInput.touched" class="invalid-feedback">Input must
+                            placeholder="Phone number"
+                            [class.is-valid]="!phoneNumberInput.errors && phoneNumberInput.touched"
+                            [class.is-invalid]="phoneNumberInput.errors && phoneNumberInput.touched" required
+                            pattern="\d{3,}" type="text">
+                        <div *ngIf="phoneNumberInput.errors && phoneNumberInput.touched" class="invalid-feedback">Input
+                            must
                             be least 3 digits log.</div>
                     </div>
+       
+
                     <div class="form-group input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"> <i class="fa fa-lock"></i> </span>

@@ -1,9 +1,7 @@
-﻿using Seller.Shared.Controllers;
+﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Seller.Listings.Features
+namespace Seller.Shared.Controllers
 {
-    using Microsoft.AspNetCore.Mvc;
-
     public class HomeController : ApiController
     {
         [HttpGet]

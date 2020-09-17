@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using MassTransit;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Tokens;
-using Seller.Shared.Services.Identity;
-
-namespace Seller.Shared.Infrastructure
+﻿namespace Seller.Shared.Infrastructure
 {
+    using System;
+    using System.Text;
+    using MassTransit;
+    using Microsoft.AspNetCore.Authentication.JwtBearer;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.IdentityModel.Tokens;
+    using Services.Identity;
+
     public static class ServiceCollectionExtensions
     {
         public static IServiceCollection AddWebService<TDbContext>(this IServiceCollection services,
