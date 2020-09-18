@@ -1,18 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Seller.Shared.DDD.Domain.Models
 {
     public abstract class Entity<TId> : IEntity
-        where TId : struct
     {
         private readonly ICollection<IDomainEvent> events;
 
-        protected Entity() => this.events = new List<IDomainEvent>();
+        protected Entity()
+        {
+            this.events = new List<IDomainEvent>();
+        }
 
-        public TId Id { get; private set; } = default;
+        public TId Id { get; private set; } = default!;
 
-        public IReadOnlyCollection<IDomainEvent> Events 
+        public IReadOnlyCollection<IDomainEvent> Events
             => this.events.ToList().AsReadOnly();
 
         public void ClearEvents() => this.events.Clear();
@@ -37,7 +40,7 @@ namespace Seller.Shared.DDD.Domain.Models
                 return false;
             }
 
-            if (this.Id.Equals(default) || other.Id.Equals(default))
+            if (this.Id!.Equals(default) || other.Id!.Equals(default))
             {
                 return false;
             }
