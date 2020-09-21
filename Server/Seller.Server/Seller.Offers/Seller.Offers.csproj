@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Seller.Offers.Application\Seller.Offers.Application.csproj" />
     <ProjectReference Include="..\Seller.Offers.Domain\Seller.Offers.Domain.csproj" />
     <ProjectReference Include="..\Seller.Shared\Seller.Shared.csproj" />
   </ItemGroup>

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Seller.Offers.Application;
 using Seller.Offers.Data;
 using Seller.Offers.Domain;
 using Seller.Offers.Infrastructure.Extensions;
@@ -20,8 +21,11 @@ namespace Seller.Offers
         public void ConfigureServices(IServiceCollection services) =>
             services
                 .AddDomain()
-                .AddWebService<OffersDbContext>(this.Configuration)
-                .AddAppServices()
+                .AddApplication(this.Configuration)
+                // .AddWebService<OffersDbContext>(this.Configuration)
+                // .AddAppServices()
+                .AddApplicationSettings(this.Configuration)
+                .AddJwtAuthentication(this.Configuration)
                 .AddSwagger()
                 .AddMessaging( typeof(ListingDeletedConsumer),typeof(ListingAcceptedConsumer), typeof(ListingEditedConsumer))
                 .AddApiControllers();

@@ -7,7 +7,7 @@ using Seller.Shared.DDD.Domain;
 
 namespace Seller.Shared.DDD.Infrastructure.Persistence
 {
-    internal class DatabaseInitializer : IInitializer
+    public class DatabaseInitializer : IInitializer
     {
         private readonly DbContext db;
         private readonly IEnumerable<IInitialData> initialDataProviders;

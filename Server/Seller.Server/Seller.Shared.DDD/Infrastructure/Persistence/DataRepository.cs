@@ -6,7 +6,7 @@ using Seller.Shared.DDD.Domain;
 
 namespace Seller.Shared.DDD.Infrastructure.Persistence
 {
-    internal abstract class DataRepository<TDbContext, TEntity> : IRepository<TEntity>
+    public abstract class DataRepository<TDbContext, TEntity> : IRepository<TEntity>
         where TDbContext : IDbContext
         where TEntity : class, IAggregateRoot
     {

@@ -1,8 +1,4 @@
-﻿
-
-
-
-namespace Seller.Offers.Application.Offers
+﻿namespace Seller.Offers.Application.Offers
 {
     using Seller.Offers.Domain.Offers.Models;
     using Seller.Shared.DDD.Application.Contracts;

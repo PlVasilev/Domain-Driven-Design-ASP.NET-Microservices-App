@@ -1,6 +1,4 @@
-﻿
-
-namespace Seller.Offers.Infrastructure.Extensions
+﻿namespace Seller.Offers.Infrastructure.Extensions
 {
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.OpenApi.Models;
