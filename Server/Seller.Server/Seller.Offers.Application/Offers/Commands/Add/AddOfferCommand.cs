@@ -9,12 +9,12 @@ namespace Seller.Offers.Application.Offers.Commands.Add
 {
     public class AddOfferCommand : OfferCommand<AddOfferCommand>, IRequest<AddOfferOutputModel>
     {
-        public class CreateCarAdCommandHandler : IRequestHandler<AddOfferCommand, AddOfferOutputModel>
+        public class AddOfferCommandHandler : IRequestHandler<AddOfferCommand, AddOfferOutputModel>
         {
             private readonly IOfferRepository offerRepository;
             private readonly IOfferFactory offerFactory;
 
-            public CreateCarAdCommandHandler(
+            public AddOfferCommandHandler(
                 IOfferRepository offerRepository,
                 IOfferFactory offerFactory)
             {
@@ -37,7 +37,7 @@ namespace Seller.Offers.Application.Offers.Commands.Add
                     .Build();
 
                 await this.offerRepository.Save(offer, cancellationToken);
-
+                string id = offer.Id;
                 return new AddOfferOutputModel(
                     offer.Id, offer.ListingId, offer.Price, offer.Created, offer.CreatorId, offer.IsAccepted, offer.Title, offer.CreatorName);
             }

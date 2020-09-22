@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200922084154_1.cs" />
+    <Compile Remove="Migrations\20200922084154_1.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MassTransit.AspNetCore" Version="7.0.0" />
     <PackageReference Include="MassTransit.RabbitMQ" Version="7.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.5" />
@@ -20,6 +25,8 @@
   <ItemGroup>
     <ProjectReference Include="..\Seller.Offers.Application\Seller.Offers.Application.csproj" />
     <ProjectReference Include="..\Seller.Offers.Domain\Seller.Offers.Domain.csproj" />
+    <ProjectReference Include="..\Seller.Offers.Infrastructure\Seller.Offers.Infrastructure.csproj" />
+    <ProjectReference Include="..\Seller.Offers.Web\Seller.Offers.Web.csproj" />
     <ProjectReference Include="..\Seller.Shared\Seller.Shared.csproj" />
   </ItemGroup>
 

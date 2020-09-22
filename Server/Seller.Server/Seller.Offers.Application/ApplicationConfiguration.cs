@@ -3,6 +3,7 @@ using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Seller.Offers.Application.Offers;
 using Seller.Shared.DDD.Application;
 using Seller.Shared.DDD.Application.Behaviours;
 

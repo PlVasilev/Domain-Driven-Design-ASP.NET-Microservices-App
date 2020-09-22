@@ -7,8 +7,8 @@
     using Features.Offer.Services.Interfaces;
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddAppServices(this IServiceCollection services) => services
-            .AddTransient<IOfferService, OfferService>();
+      //  public static IServiceCollection AddAppServices(this IServiceCollection services) => services
+       //     .AddTransient<IOfferService, OfferService>();
 
 
 

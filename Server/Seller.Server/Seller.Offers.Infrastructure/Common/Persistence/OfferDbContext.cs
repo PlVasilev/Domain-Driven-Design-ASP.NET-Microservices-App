@@ -14,8 +14,10 @@ namespace Seller.Offers.Infrastructure.Common.Persistence
     internal class OfferDbContext : DbContext,IOfferDbContext
 
     {
-        private readonly IEventDispatcher eventDispatcher;
+        private readonly IEventDispatcher? eventDispatcher;
         private bool eventsDispatched;
+
+        
 
         public OfferDbContext(
             DbContextOptions<OfferDbContext> options,
@@ -34,7 +36,7 @@ namespace Seller.Offers.Infrastructure.Common.Persistence
         {
             var entriesModified = 0;
 
-            if (!this.eventsDispatched)
+            if (!this.eventsDispatched) // TODO !
             {
                 var entities = this.ChangeTracker
                     .Entries<IEntity>()
@@ -50,7 +52,11 @@ namespace Seller.Offers.Infrastructure.Common.Persistence
 
                     foreach (var domainEvent in events)
                     {
-                        await this.eventDispatcher.Dispatch(domainEvent);
+                        if (this.eventDispatcher != null)
+                        {
+                            await this.eventDispatcher.Dispatch(domainEvent);
+                        }
+                        
                     }
                 }
 
@@ -64,6 +70,11 @@ namespace Seller.Offers.Infrastructure.Common.Persistence
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder
+                .Entity<Offer>()
+                .Property(e => e.Id)
+                .ValueGeneratedOnAdd();
+
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
             base.OnModelCreating(builder);

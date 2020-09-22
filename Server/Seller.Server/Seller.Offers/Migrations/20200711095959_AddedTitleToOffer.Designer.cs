@@ -9,7 +9,7 @@ using Seller.Offers.Data;
 
 namespace Seller.Offers.Migrations
 {
-    [DbContext(typeof(OffersDbContext))]
+    //[DbContext(typeof(OffersDbContext))]
     [Migration("20200711095959_AddedTitleToOffer")]
     partial class AddedTitleToOffer
     {

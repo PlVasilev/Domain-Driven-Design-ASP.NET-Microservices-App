@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Seller.Offers.Data;
+using Seller.Offers.Infrastructure.Common.Persistence;
 
-namespace Seller.Offers.Migrations
+namespace Seller.Offers.Infrastructure.Migrations
 {
-    //[DbContext(typeof(OffersDbContext))]
-    [Migration("20200708084452_InitalMigration")]
-    partial class InitalMigration
+    [DbContext(typeof(OfferDbContext))]
+    [Migration("20200922085333_1")]
+    partial class _1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,7 @@ namespace Seller.Offers.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Seller.Offers.Data.Models.Offer", b =>
+            modelBuilder.Entity("Seller.Offers.Domain.Offers.Models.Offer", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -33,7 +33,14 @@ namespace Seller.Offers.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("CreatorName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsAccepted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("ListingId")
@@ -42,6 +49,10 @@ namespace Seller.Offers.Migrations
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

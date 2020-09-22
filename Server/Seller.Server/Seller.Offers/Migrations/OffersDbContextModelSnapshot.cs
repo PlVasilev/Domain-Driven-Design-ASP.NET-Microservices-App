@@ -8,7 +8,7 @@ using Seller.Offers.Data;
 
 namespace Seller.Offers.Migrations
 {
-    [DbContext(typeof(OffersDbContext))]
+   // [DbContext(typeof(OffersDbContext))]
     partial class OffersDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

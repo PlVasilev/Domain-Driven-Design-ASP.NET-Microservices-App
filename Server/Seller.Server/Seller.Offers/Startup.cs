@@ -1,13 +1,12 @@
-using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Seller.Offers.Application;
-using Seller.Offers.Data;
 using Seller.Offers.Domain;
+using Seller.Offers.Infrastructure;
 using Seller.Offers.Infrastructure.Extensions;
-using Seller.Offers.Messages;
+using Seller.Offers.Web;
 using Seller.Shared.Infrastructure;
 
 namespace Seller.Offers
@@ -18,17 +17,18 @@ namespace Seller.Offers
 
         public IConfiguration Configuration { get; }
 
+
+
         public void ConfigureServices(IServiceCollection services) =>
             services
                 .AddDomain()
                 .AddApplication(this.Configuration)
-                // .AddWebService<OffersDbContext>(this.Configuration)
-                // .AddAppServices()
+                .AddInfrastructure(this.Configuration)
                 .AddApplicationSettings(this.Configuration)
                 .AddJwtAuthentication(this.Configuration)
                 .AddSwagger()
-                .AddMessaging( typeof(ListingDeletedConsumer),typeof(ListingAcceptedConsumer), typeof(ListingEditedConsumer))
-                .AddApiControllers();
+                //.AddMessaging( typeof(ListingDeletedConsumer),typeof(ListingAcceptedConsumer), typeof(ListingEditedConsumer))
+                .AddWebComponents();
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

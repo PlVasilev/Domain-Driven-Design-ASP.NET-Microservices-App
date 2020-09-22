@@ -1,30 +1,25 @@
-﻿using System.Security.Principal;
-using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Tokens;
 using Seller.Offers.Infrastructure.Common.Persistence;
 using Seller.Offers.Infrastructure.Offers;
-using Seller.Shared.DDD.Application;
 using Seller.Shared.DDD.Application.Contracts;
-using Seller.Shared.DDD.Infrastructure;
 using Seller.Shared.DDD.Infrastructure.Events;
-using Seller.Shared.DDD.Infrastructure.Persistence;
+using DatabaseInitializer = Seller.Offers.Infrastructure.Common.Persistence.DatabaseInitializer;
+using IInitializer = Seller.Offers.Infrastructure.Common.IInitializer;
 
 namespace Seller.Offers.Infrastructure
 {
     public static class InfrastructureConfiguration
     {
+        
         public static IServiceCollection AddInfrastructure(
             this IServiceCollection services,
             IConfiguration configuration)
             => services
+                .AddTransient<DbContext, OfferDbContext>()
                 .AddDatabase(configuration)
                 .AddRepositories()
-               
                 .AddTransient<IEventDispatcher, EventDispatcher>();
 
         private static IServiceCollection AddDatabase(

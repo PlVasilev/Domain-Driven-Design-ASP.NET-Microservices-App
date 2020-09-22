@@ -14,7 +14,7 @@ using Seller.Shared.DDD.Infrastructure.Persistence;
 
 namespace Seller.Offers.Infrastructure.Offers.Repositories
 {
-    internal class OfferRepository : DataRepository<IOfferDbContext, Offer>, IOfferRepository
+    internal class OfferRepository : Common.Persistence.DataRepository<IOfferDbContext, Offer>, IOfferRepository
     {
         private readonly IMapper mapper;
 
