@@ -22,10 +22,23 @@ namespace Seller.Offers.Infrastructure.Offers.Repositories
             : base(db)
             => this.mapper = mapper;
 
-        public Task<AddOfferOutputModel> Add(decimal price, string creatorId, string listingId, string title, string creatorName,
+        public async Task<AddOfferOutputModel> Add(decimal price, string creatorId, string listingId, string title, string creatorName,
             CancellationToken cancellationToken = default)
         {
-            throw new System.NotImplementedException();
+            var offer = Data.Offers.FirstOrDefaultAsync(x =>
+                      x.CreatorId == creatorId &&
+                       x.ListingId == listingId &&
+                        x.IsAccepted == false, cancellationToken: cancellationToken).Result;
+            
+            if (offer != null)
+            {
+                offer.UpdatePrice(price);
+                await this.Save(offer, cancellationToken);
+                return new AddOfferOutputModel(
+                    offer.Id, offer.ListingId, offer.Price, offer.Created, offer.CreatorId, offer.IsAccepted, offer.Title, offer.CreatorName);
+            }
+
+            return new AddOfferOutputModel();
         }
 
         public Task<List<AllOfferOutputModel>> All(string listingId, CancellationToken cancellationToken = default)
@@ -58,14 +71,20 @@ namespace Seller.Offers.Infrastructure.Offers.Repositories
             throw new System.NotImplementedException();
         }
 
-        public Task<int> GetOffersCount(string id, CancellationToken cancellationToken = default)
-        {
-            throw new System.NotImplementedException();
-        }
+        public async Task<int> GetOffersCount(string id, CancellationToken cancellationToken = default)
+         => await this.Data.Offers.Where(x => x.ListingId == id && x.IsAccepted == false).CountAsync(cancellationToken: cancellationToken);
+        
 
-        public Task<decimal> GetCurrentOffer(string creatorId, string listingId, CancellationToken cancellationToken = default)
+        public async Task<decimal> GetCurrentOffer(string creatorId, string listingId, CancellationToken cancellationToken = default)
         {
-            throw new System.NotImplementedException();
+            var offer = await this.Data.Offers.FirstOrDefaultAsync(x =>
+                x.CreatorId == creatorId && x.ListingId == listingId && x.IsAccepted == false, cancellationToken: cancellationToken);
+            if (offer == null)
+            {
+                return 0;
+            }
+
+            return offer.Price;
         }
 
         //public async Task<CarAd> Find(int id, CancellationToken cancellationToken = default)

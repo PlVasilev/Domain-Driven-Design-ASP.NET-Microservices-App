@@ -4,6 +4,10 @@ namespace Seller.Offers.Application.Offers.Commands.Add
 {
     public class AddOfferOutputModel
     {
+        public AddOfferOutputModel()
+        {
+            
+        }
         public AddOfferOutputModel(string id, string listingId, decimal price, DateTime created, string creatorId, bool isAccepted, string title, string creatorName)
         {
             Id = id;
@@ -16,13 +20,13 @@ namespace Seller.Offers.Application.Offers.Commands.Add
             CreatorName = creatorName;
         }
         
-        public string Id { get; }
-        public string ListingId { get; }
+        public string? Id { get; }
+        public string? ListingId { get; }
         public decimal Price { get;  }
-        public string Created { get; }
-        public string CreatorId { get;  }
+        public string? Created { get; }
+        public string? CreatorId { get;  }
         public bool IsAccepted { get;  }
-        public string Title { get;  }
-        public string CreatorName { get;  }
+        public string? Title { get;  }
+        public string? CreatorName { get;  }
     }
 }

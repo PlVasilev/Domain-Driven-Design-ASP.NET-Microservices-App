@@ -23,23 +23,26 @@ namespace Seller.Offers.Application.Offers.Commands.Add
             }
 
             public async Task<AddOfferOutputModel> Handle(
-                AddOfferCommand request, 
+                AddOfferCommand request,
                 CancellationToken cancellationToken)
             {
+                var result = await this.offerRepository.Add(request.Price, request.CreatorId, request.ListingId, request.Title, request.CreatorName, cancellationToken);
+                if (result.Id == null)
+                {
+                    var offer = this.offerFactory
+                        .WithCreatorId(request.CreatorId)
+                        .WithCreatorName(request.CreatorName)
+                        .WithListingId(request.ListingId)
+                        .WithPrice(request.Price)
+                        .WithTitle(request.Title)
+                        .Build();
 
+                    await this.offerRepository.Save(offer, cancellationToken);
+                    return new AddOfferOutputModel(
+                        offer.Id, offer.ListingId, offer.Price, offer.Created, offer.CreatorId, offer.IsAccepted, offer.Title, offer.CreatorName);
+                }
 
-                var offer = this.offerFactory
-                    .WithCreatorId(request.CreatorId)
-                    .WithCreatorName(request.CreatorName)
-                    .WithListingId(request.ListingId)
-                    .WithPrice(request.Price)
-                    .WithTitle(request.Title)
-                    .Build();
-
-                await this.offerRepository.Save(offer, cancellationToken);
-                string id = offer.Id;
-                return new AddOfferOutputModel(
-                    offer.Id, offer.ListingId, offer.Price, offer.Created, offer.CreatorId, offer.IsAccepted, offer.Title, offer.CreatorName);
+                return result;
             }
         }
     }

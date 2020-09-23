@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Seller.Offers.Application.Offers.Commands.Add;
+using Seller.Offers.Application.Offers.Queries.Current;
+using Seller.Offers.Application.Offers.Queries.GetCurrentOfferCount;
 
 namespace Seller.Offers.Web.Offers
 {
@@ -23,6 +25,19 @@ namespace Seller.Offers.Web.Offers
         public async Task<ActionResult<AddOfferOutputModel>> Add(
             AddOfferCommand command)
             => await this.Send(command);
+
+        [HttpPost]
+        [Authorize]
+        [Route(nameof(GetCurrentOffer))]
+        public async Task<ActionResult<decimal>> GetCurrentOffer(CurrentOfferQuery query) =>
+                await this.Send(query);
+
+        [HttpGet]
+        [Authorize]
+        [Route("count/{id}")]
+        public async Task<ActionResult<int>> Count([FromRoute] CurrentOfferCountQuery query) =>
+                await this.Send(query);
+
         //[HttpGet]
         //public async Task<ActionResult<SearchCarAdsOutputModel>> Search(
         //    [FromQuery] SearchCarAdsQuery query)
