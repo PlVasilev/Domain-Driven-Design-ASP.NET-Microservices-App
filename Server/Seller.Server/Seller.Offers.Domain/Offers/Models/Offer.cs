@@ -66,13 +66,20 @@ namespace Seller.Offers.Domain.Offers.Models
             return this;
         }
 
-        public Offer UpdateIsAccepted(bool isAccepted)
+        public Offer UpdateIsAccepted()
         {
             this.IsAccepted = true;
             return this;
         }
 
-        public Offer UpdateIsDeleted(decimal isDeleted)
+        public Offer UpdateTittle(string title)
+        {
+            ValidateTitle(title);
+            this.Title = title;
+            return this;
+        }
+
+        public Offer UpdateIsDeleted()
         {
             this.IsDeleted = true;
             return this;

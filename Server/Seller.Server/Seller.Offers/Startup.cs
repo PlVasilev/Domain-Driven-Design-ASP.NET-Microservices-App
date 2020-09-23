@@ -4,8 +4,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Seller.Offers.Application;
 using Seller.Offers.Domain;
+using Seller.Offers.Extensions;
 using Seller.Offers.Infrastructure;
-using Seller.Offers.Infrastructure.Extensions;
+using Seller.Offers.Infrastructure.Offers.Messages;
 using Seller.Offers.Web;
 using Seller.Shared.Infrastructure;
 
@@ -27,7 +28,7 @@ namespace Seller.Offers
                 .AddApplicationSettings(this.Configuration)
                 .AddJwtAuthentication(this.Configuration)
                 .AddSwagger()
-                //.AddMessaging( typeof(ListingDeletedConsumer),typeof(ListingAcceptedConsumer), typeof(ListingEditedConsumer))
+                .AddMessaging( typeof(ListingDeletedConsumer),typeof(ListingAcceptedConsumer), typeof(ListingEditedConsumer))
                 .AddWebComponents();
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

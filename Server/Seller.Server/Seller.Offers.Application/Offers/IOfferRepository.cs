@@ -11,8 +11,8 @@
     public interface IOfferRepository : IRepository<Offer>
     {
         Task<AddOfferOutputModel> Add(decimal price, string creatorId, string listingId, string title, string creatorName, CancellationToken cancellationToken = default);
-        Task<List<AllOfferOutputModel>> All(string listingId, CancellationToken cancellationToken = default);
-        Task<List<MineOfferOutputModel>> Mine(string userId, CancellationToken cancellationToken = default);
+        Task<IReadOnlyList<AllOfferOutputModel>> All(string listingId, CancellationToken cancellationToken = default);
+        Task<IReadOnlyList<MineOfferOutputModel>> Mine(string userId, CancellationToken cancellationToken = default);
         Task<bool> Accept(string id, CancellationToken cancellationToken = default);
         Task<bool> Delete(string listingId, CancellationToken cancellationToken = default);
         Task<bool> DeleteOffer(string id, CancellationToken cancellationToken = default);

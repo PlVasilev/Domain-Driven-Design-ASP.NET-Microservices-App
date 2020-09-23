@@ -37,15 +37,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.4" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="7.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.4" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.4" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Seller.Listing.Gateway\Seller.Listing.Gateway.csproj" />
     <ProjectReference Include="..\Seller.Offers.Application\Seller.Offers.Application.csproj" />
     <ProjectReference Include="..\Seller.Shared.DDD\Seller.Shared.DDD.csproj" />
+    <ProjectReference Include="..\Seller.Shared\Seller.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>
