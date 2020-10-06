@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Text.RegularExpressions;
+using static Seller.Shared.DDD.Domain.Models.ModelConstants;
 
 namespace Seller.Shared.DDD.Domain.Models
 {
@@ -12,6 +14,30 @@ namespace Seller.Shared.DDD.Domain.Models
                 return;
             }
 
+            ThrowException<TException>($"{name} cannot be null ot empty.");
+        }
+
+        public static void AgainstNotValidEmail<TException>(string value, string name = "Value")
+            where TException : BaseDomainException, new()
+        {
+            Regex regex = new Regex(Common.EmailRegex);
+            Match match = regex.Match(value);
+            if (match.Success)
+            {
+                return;
+            }
+            ThrowException<TException>($"{name} cannot be null ot empty.");
+        }
+
+        public static void AgainstNotPhoneNumber<TException>(string value, string name = "Value")
+            where TException : BaseDomainException, new()
+        {
+            Regex regex = new Regex(Common.PhoneRegex);
+            Match match = regex.Match(value);
+            if (match.Success)
+            {
+                return;
+            }
             ThrowException<TException>($"{name} cannot be null ot empty.");
         }
 
