@@ -9,16 +9,16 @@
     public class Listing : Entity<string>, IAggregateRoot
     {
 
-        internal Listing(string title, string description, string imageUrl, decimal price, string userId)
+        internal Listing(string title, string description, string imageUrl, decimal price, UserSeller seller)
         {
-            Validate(title, description, imageUrl, price, userId);
+            Validate(title, description, imageUrl, price);
 
             Title = title;
             Created = DateTime.UtcNow;
             ImageUrl = imageUrl;
             Description = description;
             Price = price;
-            SellerId = userId;
+            Seller = seller;
             IsDeal = false;
             IsDeleted = false;
        
@@ -31,7 +31,8 @@
             ImageUrl = default!;
             Description = default!;
             Price = default;
-            SellerId = default!;
+            Seller = default!;
+            Seller = default!;
             IsDeal = default!;
             IsDeleted = false;
         }
@@ -48,21 +49,21 @@
 
         public DateTime Created { get; private set; }
 
-        public string DealId { get; private set; } = default!;
+        public Deal Deal { get; private set; } = default!;
 
-        public string SellerId { get; private set; }
+        public UserSeller Seller { get; private set; }
 
         public bool IsDeleted { get; private set; }
 
         public bool IsDeal { get; private set; }
 
-        private void Validate(string title, string description, string imageUrl, decimal price, string userId)
+        private void Validate(string title, string description, string imageUrl, decimal price)
         {
             ValidateTitle(title);
             ValidateDescription(description);
             ValidateImageUrl(imageUrl);
             ValidatePrice(price);
-            ValidateSellerId(userId);
+       
         }
 
         private void ValidateTitle(string title)
@@ -91,11 +92,5 @@
                 MaxDescriptionLength,
                 nameof(this.Description));
 
-        private void ValidateSellerId(string userId)
-            => Guard.ForStringLength<InvalidListingException>(
-                userId,
-                MinGuidIdLength,
-                MaxGuidIdLength,
-                nameof(this.SellerId));
     }
 }

@@ -9,57 +9,49 @@ namespace Seller.Listings.Domain.Sales.Models
 {
     public class Deal : Entity<string>, IAggregateRoot
     {
-        internal Deal(string title, string buyerId,string listingId, decimal price, string sellerId)
+        internal Deal(string title, UserSeller buyer,Listing listing, decimal price, UserSeller seller)
         {
 
-            Validate(title, buyerId, listingId, price, sellerId);
+            Validate(title, price);
 
             Title = title;
-            BuyerId = buyerId;
+            Buyer = buyer;
             CreatedOn = DateTime.UtcNow;
             IsDeleted = false;
-            ListingId = listingId;
+            Listing = listing;
             Price = price;
-            SellerId = sellerId;
+            Seller = seller;
         }
-
-  
 
         private Deal()
         {
             Title = default!;
-            BuyerId = default!;
+            Buyer = default!;
             CreatedOn = default!;
             IsDeleted = false;
-            ListingId = default!;
+            Listing = default!;
             Price = default!;
-            SellerId = default!;
+            Seller = default!;
         }
-
-      
 
         public string Title { get; set; }
 
         public decimal Price { get; set; }
 
-        public string ListingId { get; set; }
+        public Listing Listing { get; set; }
         
-        public string SellerId { get; set; }
+        public UserSeller Seller { get; set; }
         
-        public string BuyerId { get; set; }
+        public UserSeller Buyer { get; set; }
         
         public bool IsDeleted { get; set; }
 
         public DateTime CreatedOn { get; set; }
 
-        private void Validate(string title, string buyerId, string listingId, decimal price, string sellerId)
+        private void Validate(string title,decimal price)
         {
             ValidateTitle(title);
-            ValidateBuyerId(buyerId);
-            ValidateListingId(listingId);
             ValidatePrice(price);
-            ValidateSellerId(sellerId);
-
         }
 
         private void ValidateTitle(string title)
@@ -75,29 +67,5 @@ namespace Seller.Listings.Domain.Sales.Models
                 Zero,
                 decimal.MaxValue,
                 nameof(this.Price));
-
-
-        private void ValidateSellerId(string buyerId)
-            => Guard.ForStringLength<InvalidDealException>(
-                buyerId,
-                MinGuidIdLength,
-                MaxGuidIdLength,
-                nameof(this.BuyerId));
-
-        private void ValidateBuyerId(string sellerId)
-            => Guard.ForStringLength<InvalidDealException>(
-                sellerId,
-                MinGuidIdLength,
-                MaxGuidIdLength,
-                nameof(this.SellerId));
-
-        private void ValidateListingId(string listingId)
-            => Guard.ForStringLength<InvalidDealException>(
-                listingId,
-                MinGuidIdLength,
-                MaxGuidIdLength,
-                nameof(this.ListingId));
-
-
     }
 }

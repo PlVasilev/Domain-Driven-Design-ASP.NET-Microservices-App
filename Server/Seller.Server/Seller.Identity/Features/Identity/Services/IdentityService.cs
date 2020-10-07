@@ -19,15 +19,11 @@ namespace Seller.Identity.Features.Identity.Services
         private const string InvalidErrorMessage = "Invalid credentials.";
 
         private readonly UserManager<User> userManager;
-        private readonly IdentityDbContext context;
 
-        public IdentityService(UserManager<User> userManager, IdentityDbContext context)
+        public IdentityService(UserManager<User> userManager)
         {
             this.userManager = userManager;
-            this.context = context;
         }
-
-      
 
         public async Task<User> Register(string username, string password)
         {

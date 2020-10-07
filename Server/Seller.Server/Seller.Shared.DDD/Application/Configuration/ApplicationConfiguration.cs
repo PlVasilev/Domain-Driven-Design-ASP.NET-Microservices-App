@@ -3,14 +3,13 @@ using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Seller.Shared.DDD.Application;
 using Seller.Shared.DDD.Application.Behaviours;
 
-namespace Seller.Offers.Application
+namespace Seller.Shared.DDD.Application.Configuration
 {
     public static class ApplicationConfiguration
     {
-        public static IServiceCollection AddApplication(
+        public static IServiceCollection AddCommonApplication(
             this IServiceCollection services,
             IConfiguration configuration)
             => services
