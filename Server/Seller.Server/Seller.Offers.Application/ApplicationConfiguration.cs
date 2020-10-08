@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Seller.Shared.DDD.Application;
 using Seller.Shared.DDD.Application.Behaviours;
 
+
 namespace Seller.Offers.Application
 {
     public static class ApplicationConfiguration

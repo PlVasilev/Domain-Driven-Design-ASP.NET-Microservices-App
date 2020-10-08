@@ -29,13 +29,13 @@
             public const int MinTitleLength = 3;
             public const int MaxTitleLength = 50;
             public const int MinDescriptionLength = 3;
-            public const int MaxDescriptionLength = 150;
+            public const int MaxDescriptionLength = 250;
         }
 
         public class UserSeller
         {
-            public const int MinNameLength = 2;
-            public const int MaxNameLength = 30;
+            public const int MinUserNameLength = 2;
+            public const int MaxUserNameLength = 30;
         }
     }
 }

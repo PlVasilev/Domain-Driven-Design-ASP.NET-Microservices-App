@@ -9,19 +9,20 @@
     public class Listing : Entity<string>, IAggregateRoot
     {
 
-        internal Listing(string title, string description, string imageUrl, decimal price, UserSeller seller)
+        internal Listing(string title, string description, string imageUrl, decimal price, string sellerId)
         {
-            Validate(title, description, imageUrl, price);
+            Validate(title, description, imageUrl, price, sellerId);
 
             Title = title;
             Created = DateTime.UtcNow;
             ImageUrl = imageUrl;
             Description = description;
             Price = price;
-            Seller = seller;
+            SellerId = sellerId;
+            Seller = default!;
             IsDeal = false;
             IsDeleted = false;
-       
+
         }
 
         private Listing()
@@ -31,18 +32,18 @@
             ImageUrl = default!;
             Description = default!;
             Price = default;
-            Seller = default!;
+            SellerId = default!;
             Seller = default!;
             IsDeal = default!;
             IsDeleted = false;
         }
 
-      
+
 
         public string Title { get; private set; }
-     
+
         public string ImageUrl { get; private set; }
-  
+
         public string Description { get; private set; }
 
         public decimal Price { get; private set; }
@@ -51,19 +52,20 @@
 
         public Deal Deal { get; private set; } = default!;
 
+        public string SellerId { get; private set; }
         public UserSeller Seller { get; private set; }
 
         public bool IsDeleted { get; private set; }
 
         public bool IsDeal { get; private set; }
 
-        private void Validate(string title, string description, string imageUrl, decimal price)
+        private void Validate(string title, string description, string imageUrl, decimal price, string sellerId)
         {
             ValidateTitle(title);
             ValidateDescription(description);
             ValidateImageUrl(imageUrl);
             ValidatePrice(price);
-       
+            ValidateSellerId(sellerId);
         }
 
         private void ValidateTitle(string title)
@@ -91,6 +93,13 @@
                 MinDescriptionLength,
                 MaxDescriptionLength,
                 nameof(this.Description));
+
+        private void ValidateSellerId(string sellerId)
+            => Guard.ForStringLength<InvalidUserSellerException>(
+                sellerId,
+                MinGuidIdLength,
+                MaxGuidIdLength,
+                nameof(this.SellerId));
 
     }
 }
