@@ -25,9 +25,4 @@
     <ProjectReference Include="..\Seller.Shared\Seller.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Sales\Deals\Commands\" />
-    <Folder Include="Sales\Deals\Queries\" />
-  </ItemGroup>
-
 </Project>

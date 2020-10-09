@@ -16,5 +16,6 @@ namespace Seller.Listings.Application.Sales.Listings.Commands.Common
 
         public bool IsDeleted { get; set; } = false;
         public string SellerId { get; set; } = default!;
+        
     }
 }

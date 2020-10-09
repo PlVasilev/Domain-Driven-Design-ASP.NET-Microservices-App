@@ -9,9 +9,9 @@ using Seller.Shared.Messages.Offers;
 
 namespace Seller.Listings.Application.Sales.Listings.Commands.Create
 {
-    public class CreateListingCommand : ListingCommand<CreateListingCommand>, IRequest<ListingCreateResponseModel>
+    public class EditListingCommand : ListingCommand<EditListingCommand>, IRequest<ListingCreateResponseModel>
     {
-        public class CreateListingCommandHandler : IRequestHandler<CreateListingCommand, ListingCreateResponseModel>
+        public class CreateListingCommandHandler : IRequestHandler<EditListingCommand, ListingCreateResponseModel>
         {
             private readonly IListingRepository listingRepository;
             private readonly IListingFactory listingFactory;
@@ -28,7 +28,7 @@ namespace Seller.Listings.Application.Sales.Listings.Commands.Create
             }
 
             public async Task<ListingCreateResponseModel> Handle(
-                CreateListingCommand request,
+                EditListingCommand request,
                 CancellationToken cancellationToken)
             {
                 var listing = listingFactory

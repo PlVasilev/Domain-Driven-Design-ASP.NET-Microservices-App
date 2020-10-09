@@ -32,6 +32,14 @@
             public const int MaxDescriptionLength = 250;
         }
 
+        public class Deal
+        {
+            public const int MinTitleLength = 3;
+            public const int MaxTitleLength = 50;
+            public const int MinDescriptionLength = 3;
+            public const int MaxDescriptionLength = 250;
+        }
+
         public class UserSeller
         {
             public const int MinUserNameLength = 2;

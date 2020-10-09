@@ -59,6 +59,59 @@
 
         public bool IsDeal { get; private set; }
 
+        public Listing UpdateTitle(string title)
+        {
+            this.ValidateTitle(title);
+            this.Title = title;
+            return this;
+        }
+
+        public Listing UpdateDescription(string description)
+        {
+            this.ValidateDescription(description);
+            this.Description = description;
+            return this;
+        }
+
+        public Listing UpdateImageUrl(string imageUrl)
+        {
+            this.ValidateImageUrl(imageUrl);
+            this.Description = imageUrl;
+            return this;
+        }
+
+        public Listing UpdateImageUrl(decimal price)
+        {
+            this.ValidatePrice(price);
+            this.Price = price;
+            return this;
+        }
+
+        public Listing UpdatePrice(decimal price)
+        {
+            this.ValidatePrice(price);
+            this.Price = price;
+            return this;
+        }
+
+        public Listing UpdateCreated()
+        {
+            this.Created = DateTime.UtcNow;
+            return this;
+        }
+
+        public Listing UpdateIsDeleted()
+        {
+            this.IsDeleted = true;
+            return this;
+        }
+
+        public Listing UpdateIsDeal()
+        {
+            this.IsDeal = true;
+            return this;
+        }
+
         private void Validate(string title, string description, string imageUrl, decimal price, string sellerId)
         {
             ValidateTitle(title);
