@@ -1,6 +1,10 @@
 ﻿using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Seller.Listing.Gateway.Models.Listings;
+using Seller.Listings.Application.Listings.Listings;
+using Seller.Listings.Application.Listings.Listings.Queries.Common;
+using Seller.Listings.Application.Listings.Listings.Queries.Details;
+using Seller.Listings.Application.Listings.Listings.Queries.TitleAndSellerName;
 
 namespace Seller.Listings.Infrastructure.Common.Listings.Repositories
 {
@@ -8,13 +12,8 @@ namespace Seller.Listings.Infrastructure.Common.Listings.Repositories
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
-    using Seller.Listings.Application.Sales.Listings;
-    using Seller.Listings.Application.Sales.Listings.Commands.Create;
-    using Seller.Listings.Application.Sales.Listings.Queries.Common;
-    using Seller.Listings.Application.Sales.Listings.Queries.Details;
-    using Seller.Listings.Application.Sales.Listings.Queries.TitleAndSellerName;
     using Persistence;
-    internal class ListingRepository : DataRepository<IListingDbContext, Domain.Sales.Models.Listing>, IListingRepository
+    internal class ListingRepository : DataRepository<IListingDbContext, Domain.Listings.Models.Listing>, IListingRepository
     {
         public ListingRepository(IListingDbContext db) : base(db)
         {
@@ -43,13 +42,13 @@ namespace Seller.Listings.Infrastructure.Common.Listings.Repositories
                 .Select(l => new DetailsListingResponseModel(l.Id, l.Title, l.ImageUrl, l.Price,l.Description,l.SellerId,l.Seller.FirstName,l.Seller.LastName,l.Created))
                 .FirstOrDefaultAsync(cancellationToken: cancellationToken);
 
-        public async Task<Domain.Sales.Models.Listing> GetOnlyById(string id, CancellationToken cancellationToken = default) =>
+        public async Task<Domain.Listings.Models.Listing> GetOnlyById(string id, CancellationToken cancellationToken = default) =>
             await this.Data
                 .Listings
                 .Where(l => l.Id == id)
                 .FirstOrDefaultAsync(cancellationToken: cancellationToken);
 
-        public async Task<Domain.Sales.Models.Listing> GetById(string id, CancellationToken cancellationToken = default) =>
+        public async Task<Domain.Listings.Models.Listing> GetById(string id, CancellationToken cancellationToken = default) =>
         await this.Data
              .Listings
              .Where(l => l.Id == id  && l.IsDeleted == false && l.IsDeal == false)

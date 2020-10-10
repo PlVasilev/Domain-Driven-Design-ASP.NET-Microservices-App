@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Seller.Listings.Domain.Sales.Models;
+using Seller.Listings.Domain.Listings.Models;
 using Seller.Listings.Infrastructure.Common.Listings;
 using Seller.Shared.DDD.Domain.Models;
 using Seller.Shared.DDD.Infrastructure.Events;
@@ -28,7 +28,7 @@ namespace Seller.Listings.Infrastructure.Common.Persistence
             this.eventsDispatched = false;
         }
 
-        public DbSet<Domain.Sales.Models.Listing> Listings { get; set; } = default!;
+        public DbSet<Domain.Listings.Models.Listing> Listings { get; set; } = default!;
         public DbSet<Deal> Deals { get; set; } = default!;
         public DbSet<UserSeller> UserSellers { get; set; } = default!;
 
@@ -72,7 +72,7 @@ namespace Seller.Listings.Infrastructure.Common.Persistence
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder
-                .Entity<Domain.Sales.Models.Listing>()
+                .Entity<Domain.Listings.Models.Listing>()
                 .Property(e => e.Id)
                 .ValueGeneratedOnAdd();
 
@@ -86,7 +86,7 @@ namespace Seller.Listings.Infrastructure.Common.Persistence
                 .Property(e => e.Id)
                 .ValueGeneratedOnAdd();
 
-            builder.Entity<Domain.Sales.Models.Listing>()
+            builder.Entity<Domain.Listings.Models.Listing>()
                 .HasOne<Deal>(a => a.Deal)
                 .WithOne(b => b.Listing!)
                 .HasForeignKey<Deal>(a => a.ListingId)
