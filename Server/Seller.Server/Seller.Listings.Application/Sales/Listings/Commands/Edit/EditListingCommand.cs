@@ -27,10 +27,6 @@ namespace Seller.Listings.Application.Sales.Listings.Commands.Edit
                 DeleteListingCommand request,
                 CancellationToken cancellationToken)
             {
-                // var listing = await this.context
-                //     .Listings
-                //     .Where(l => l.Id == request.Id && l.SellerId == request.SellerId && l.IsDeleted == false)
-                //     .FirstOrDefaultAsync();
 
                 var listing = await listingRepository.GetById(request.Id, cancellationToken);
 
@@ -52,7 +48,7 @@ namespace Seller.Listings.Application.Sales.Listings.Commands.Edit
                     {
                         ListingId = listing.Id,
                         Title = listing.Title
-                    });
+                    }, cancellationToken);
                 }
                 return true;
             }

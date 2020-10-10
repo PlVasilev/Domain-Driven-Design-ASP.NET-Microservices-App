@@ -11,7 +11,7 @@ namespace Seller.Listings.Features.Listing.Services
     using System.Linq;
     using Microsoft.EntityFrameworkCore;
     using Models;
-    public class ListingService : IListingService
+    public class ListingService  : IListingService
     {
         private readonly ListingsDbContext context;
         private readonly IBus publisher;

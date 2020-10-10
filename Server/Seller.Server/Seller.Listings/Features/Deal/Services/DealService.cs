@@ -13,7 +13,7 @@ namespace Seller.Listings.Features.Deal.Services
     using Data.Models;
     using Data;
 
-    public class DealService : IDealService
+    public class DealService  : IDealService
     {
         private readonly ListingsDbContext context;
         private readonly IBus publisher;

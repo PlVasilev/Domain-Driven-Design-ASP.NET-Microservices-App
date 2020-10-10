@@ -23,10 +23,6 @@ namespace Seller.Listings.Application.Sales.Listings.Commands.Delete
                 DealListingCommand request,
                 CancellationToken cancellationToken)
             {
-                // var listing = await this.context
-                //     .Listings
-                //     .Where(l => l.Id == request.Id && l.SellerId == request.SellerId && l.IsDeleted == false)
-                //     .FirstOrDefaultAsync();
 
                 var listing = await listingRepository.GetById(request.Id, cancellationToken);
 

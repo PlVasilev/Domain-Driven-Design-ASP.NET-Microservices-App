@@ -10,7 +10,7 @@ using Seller.Shared.Services.Identity;
 
 namespace Seller.Listings.Features.Seller.Services
 {
-    public class SellerService : ISellerService
+    public class SellerService  : ISellerService
     {
         private readonly ListingsDbContext context;
 
@@ -43,10 +43,10 @@ namespace Seller.Listings.Features.Seller.Services
 
         public async Task<SellerIdResponseModel> GetIdByUser(string userId)
         {
-          var user = await context.UserSellers.FirstOrDefaultAsync(x => x.UserId == userId);
+            var user = await context.UserSellers.FirstOrDefaultAsync(x => x.UserId == userId);
 
-          return new SellerIdResponseModel {Id = user.Id};
+            return new SellerIdResponseModel { Id = user.Id };
         }
-            
+
     }
 }

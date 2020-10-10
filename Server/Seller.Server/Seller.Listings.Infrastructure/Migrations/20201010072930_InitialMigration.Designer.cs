@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Seller.Listings.Data;
+using Seller.Listings.Infrastructure.Common.Persistence;
 
-namespace Seller.Listings.Migrations
+namespace Seller.Listings.Infrastructure.Migrations
 {
-   // [DbContext(typeof(ListingsDbContext))]
-    partial class ListingsDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(ListingsDbContext))]
+    [Migration("20201010072930_InitialMigration")]
+    partial class InitialMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,9 +21,10 @@ namespace Seller.Listings.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Seller.Listings.Data.Models.Deal", b =>
+            modelBuilder.Entity("Seller.Listings.Domain.Sales.Models.Deal", b =>
                 {
                     b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("BuyerId")
@@ -61,16 +64,14 @@ namespace Seller.Listings.Migrations
                     b.ToTable("Deals");
                 });
 
-            modelBuilder.Entity("Seller.Listings.Data.Models.Listing", b =>
+            modelBuilder.Entity("Seller.Listings.Domain.Sales.Models.Listing", b =>
                 {
                     b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("DealId")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -104,12 +105,14 @@ namespace Seller.Listings.Migrations
                     b.ToTable("Listings");
                 });
 
-            modelBuilder.Entity("Seller.Listings.Data.Models.UserSeller", b =>
+            modelBuilder.Entity("Seller.Listings.Domain.Sales.Models.UserSeller", b =>
                 {
                     b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
@@ -140,30 +143,30 @@ namespace Seller.Listings.Migrations
                     b.ToTable("UserSellers");
                 });
 
-            modelBuilder.Entity("Seller.Listings.Data.Models.Deal", b =>
+            modelBuilder.Entity("Seller.Listings.Domain.Sales.Models.Deal", b =>
                 {
-                    b.HasOne("Seller.Listings.Data.Models.UserSeller", "Buyer")
+                    b.HasOne("Seller.Listings.Domain.Sales.Models.UserSeller", "Buyer")
                         .WithMany("BuyDeals")
                         .HasForeignKey("BuyerId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Seller.Listings.Data.Models.Listing", "Listing")
+                    b.HasOne("Seller.Listings.Domain.Sales.Models.Listing", "Listing")
                         .WithOne("Deal")
-                        .HasForeignKey("Seller.Listings.Data.Models.Deal", "ListingId")
+                        .HasForeignKey("Seller.Listings.Domain.Sales.Models.Deal", "ListingId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Seller.Listings.Data.Models.UserSeller", "Seller")
+                    b.HasOne("Seller.Listings.Domain.Sales.Models.UserSeller", "Seller")
                         .WithMany("SaleDeals")
                         .HasForeignKey("SellerId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Seller.Listings.Data.Models.Listing", b =>
+            modelBuilder.Entity("Seller.Listings.Domain.Sales.Models.Listing", b =>
                 {
-                    b.HasOne("Seller.Listings.Data.Models.UserSeller", "Seller")
+                    b.HasOne("Seller.Listings.Domain.Sales.Models.UserSeller", "Seller")
                         .WithMany("Listings")
                         .HasForeignKey("SellerId")
                         .OnDelete(DeleteBehavior.Cascade)

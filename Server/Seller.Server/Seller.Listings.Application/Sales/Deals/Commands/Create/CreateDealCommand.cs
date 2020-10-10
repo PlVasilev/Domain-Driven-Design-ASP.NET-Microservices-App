@@ -4,7 +4,6 @@ using MassTransit;
 using MediatR;
 using Seller.Listings.Application.Sales.Deals.Commands.Common;
 using Seller.Listings.Application.Sales.Listings;
-using Seller.Listings.Application.Sales.Listings.Commands.Common;
 using Seller.Listings.Domain.Sales.Factories;
 using Seller.Shared.Messages.Offers;
 
@@ -58,7 +57,7 @@ namespace Seller.Listings.Application.Sales.Deals.Commands.Create
                 await this.publisher.Publish(new ListingAcceptedMessage
                 {
                     ListingId = request.OfferId
-                });
+                }, cancellationToken);
 
                 return true;
             }

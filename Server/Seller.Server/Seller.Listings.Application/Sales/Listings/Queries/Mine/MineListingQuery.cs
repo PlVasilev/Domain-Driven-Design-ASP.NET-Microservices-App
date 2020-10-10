@@ -21,7 +21,7 @@ namespace Seller.Listings.Application.Sales.Listings.Queries.Mine
             public async Task<IReadOnlyCollection<AllListingResponseModel>> Handle(
                 MineListingQuery request,
                 CancellationToken cancellationToken)
-                => await this.listingRepository.All(cancellationToken);
+                => await this.listingRepository.Mine(request.Id, cancellationToken);
 
 
         }

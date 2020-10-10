@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -10,8 +9,6 @@ using Seller.Offers.Application.Offers.Commands.Add;
 using Seller.Offers.Application.Offers.Queries.All;
 using Seller.Offers.Application.Offers.Queries.Mine;
 using Seller.Offers.Domain.Offers.Models;
-using Seller.Shared.DDD.Domain;
-using Seller.Shared.DDD.Infrastructure.Persistence;
 
 namespace Seller.Offers.Infrastructure.Offers.Repositories
 {

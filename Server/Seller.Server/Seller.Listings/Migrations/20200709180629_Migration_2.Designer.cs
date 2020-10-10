@@ -8,8 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Seller.Listings.Data;
 
 namespace Seller.Listings.Migrations
-{
-    [DbContext(typeof(ListingsDbContext))]
+{ [DbContext(typeof(ListingsDbContext))]
     [Migration("20200709180629_Migration_2")]
     partial class Migration_2
     {

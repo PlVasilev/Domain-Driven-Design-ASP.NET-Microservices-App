@@ -15,7 +15,7 @@ namespace Seller.Listings.Application.Sales.Listings.Queries.Common
             Title = title;
             ImageUrl = imageUrl;
             Price = price;
-            Created = created.ToString("g");
+            Created = created.ToString("D");
         }
 
         public string? Id { get; }

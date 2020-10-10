@@ -13,19 +13,12 @@ namespace Seller.Listings.Application.Sales.Listings
 {
     public interface IListingRepository :  IRepository<Listing>
     {
-
-        public Task<ListingCreateResponseModel> Create(string title, string description, string imageUrl, decimal price,
-            string userId, CancellationToken cancellationToken = default);
-
         public Task<IReadOnlyCollection<AllListingResponseModel>> All(CancellationToken cancellationToken = default);
-
+        public Task<IReadOnlyCollection<AllListingResponseModel>> Mine(string userId,
+            CancellationToken cancellationToken = default);
         public Task<DetailsListingResponseModel> Details(string id, CancellationToken cancellationToken = default);
         public Task<Listing> GetOnlyById(string id, CancellationToken cancellationToken = default);
         public Task<Listing> GetById(string id, CancellationToken cancellationToken = default);
-
         public  Task<TitleAndSellerNameListingResponseModel> GetTitleAndSellerName(string id, CancellationToken cancellationToken = default);
-
-        public Task<bool> Update(string id, string title, string description, string imageUrl, decimal price,
-            string userId, CancellationToken cancellationToken = default);
     }
 }

@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Seller.Listings.Infrastructure\Seller.Listings.Infrastructure.csproj" />
     <ProjectReference Include="..\Seller.Shared\Seller.Shared.csproj" />
   </ItemGroup>
 
