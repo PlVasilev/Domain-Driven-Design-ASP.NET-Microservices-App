@@ -32,8 +32,9 @@ namespace Seller.Listing.Gateway.Controllers
         [Route("OffersAll/{id}")]
         public async Task<List<OfferResponceModelWithName>> OffersAll(string id)
         {
-            var listing = await listingService.GetTitleAndSellerName(id);
             var offers = await offerService.All(id);
+            var listing = await listingService.GetTitleAndSellerName(id);
+            
             var result = new List<OfferResponceModelWithName>();
 
             foreach (var offerResponceModel in offers)

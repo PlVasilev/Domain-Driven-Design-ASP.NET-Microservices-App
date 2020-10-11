@@ -17,12 +17,14 @@ namespace Seller.Listings.Application.Listings.Deals.Commands.Common
         public string ListingId { get;  set; } = default!;
         public Listing? Listing { get;  set; }
 
-        public string SellerId { get;  set; } = default!;
-        public UserSeller? Seller { get;  set; }
+       
 
         public string BuyerId { get;  set; } = default!;
         public UserSeller? Buyer { get;  set; }
-        
+
+        public string SellerId { get; set; } = default!;
+        public UserSeller? Seller { get; set; }
+
         public bool IsDeleted { get;  set; }
 
         public DateTime CreatedOn { get;  set; }

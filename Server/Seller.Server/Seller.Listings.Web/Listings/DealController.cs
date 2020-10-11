@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Seller.Listings.Application.Listings.Deals.Commands.Create;
 using Seller.Listings.Application.Listings.Deals.Queries.BuyDeals;
 using Seller.Listings.Application.Listings.Deals.Queries.Common;
+using Seller.Listings.Application.Listings.Deals.Queries.SellDeals;
 
 namespace Seller.Listings.Web.Listings
 {
@@ -19,7 +20,7 @@ namespace Seller.Listings.Web.Listings
 
         [HttpGet]
         [Route("BuyDeals/{id}")]
-        public async Task<ActionResult<IReadOnlyList<DealResponseModel>>> BuyDeals([FromRoute] AllSellDealsQuery query)
+        public async Task<ActionResult<IReadOnlyList<DealResponseModel>>> BuyDeals([FromRoute] AllBuyDealsQuery query)
             => await Send(query);
             
 

@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using Seller.Listing.Gateway.Models.Listings;
 using Seller.Listings.Application.Listings.Listings;
 using Seller.Listings.Application.Listings.Listings.Queries.Common;
 using Seller.Listings.Application.Listings.Listings.Queries.Details;
@@ -8,7 +7,6 @@ using Seller.Listings.Application.Listings.Listings.Queries.TitleAndSellerName;
 
 namespace Seller.Listings.Infrastructure.Common.Listings.Repositories
 {
-    using System;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
@@ -54,9 +52,18 @@ namespace Seller.Listings.Infrastructure.Common.Listings.Repositories
              .Where(l => l.Id == id  && l.IsDeleted == false && l.IsDeal == false)
              .FirstOrDefaultAsync(cancellationToken: cancellationToken);
 
-        public Task<TitleAndSellerNameListingResponseModel> GetTitleAndSellerName(string id, CancellationToken cancellationToken = default)
+        public async Task<TitleAndSellerNameListingResponseModel> GetTitleAndSellerName(string id, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            var result = await Data
+                       .Listings
+                       .Include(x => x.Seller)
+                       .FirstOrDefaultAsync(l => l.IsDeleted == false && l.Id == id && l.IsDeal == false, cancellationToken: cancellationToken);
+
+                   return new TitleAndSellerNameListingResponseModel
+                   {
+                       SellerName = result.Seller.FirstName + " " + result.Seller.LastName,
+                       Title = result.Title
+                   };
         }
     }
 }

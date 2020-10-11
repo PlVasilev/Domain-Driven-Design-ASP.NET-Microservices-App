@@ -34,12 +34,13 @@ namespace Seller.Listings.Application.Listings.Deals.Commands.Create
                 CreateDealCommand request,
                 CancellationToken cancellationToken)
             {
+                // TODO Fix Seller Should be Buyer and Buyer Should be Seller
                 var deal = dealFactory
                     .WithTitle(request.Title)
                     .WithPrice(request.Price)
                     .WithListingId(request.ListingId)
-                    .WithBuyerId(request.BuyerId)
-                    .WithSellerId(request.SellerId)
+                    .WithBuyerId(request.SellerId)
+                    .WithSellerId(request.BuyerId)
                     .Build();
 
 

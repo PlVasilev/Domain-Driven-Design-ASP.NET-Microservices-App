@@ -77,7 +77,7 @@ namespace Seller.Listings.Domain.Listings.Models
         public Listing UpdateImageUrl(string imageUrl)
         {
             this.ValidateImageUrl(imageUrl);
-            this.Description = imageUrl;
+            this.ImageUrl = imageUrl;
             return this;
         }
 

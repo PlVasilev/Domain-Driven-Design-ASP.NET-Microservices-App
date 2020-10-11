@@ -7,9 +7,9 @@ using Seller.Shared.DDD.Application;
 
 namespace Seller.Listings.Application.Listings.Deals.Queries.BuyDeals
 {
-    public class AllSellDealsQuery : EntityCommand<string>, IRequest<IReadOnlyList<DealResponseModel>>
+    public class AllBuyDealsQuery : EntityCommand<string>, IRequest<IReadOnlyList<DealResponseModel>>
     {
-        public class AllBuyDealsQueryHandler : IRequestHandler<AllSellDealsQuery, IReadOnlyList<DealResponseModel>>
+        public class AllBuyDealsQueryHandler : IRequestHandler<AllBuyDealsQuery, IReadOnlyList<DealResponseModel>>
         {
             private readonly IDealRepository dealRepository;
 
@@ -19,7 +19,7 @@ namespace Seller.Listings.Application.Listings.Deals.Queries.BuyDeals
             }
 
             public async Task<IReadOnlyList<DealResponseModel>> Handle(
-                AllSellDealsQuery request,
+                AllBuyDealsQuery request,
                 CancellationToken cancellationToken)
                 => await this.dealRepository.BuyDeals(request.Id, cancellationToken);
 

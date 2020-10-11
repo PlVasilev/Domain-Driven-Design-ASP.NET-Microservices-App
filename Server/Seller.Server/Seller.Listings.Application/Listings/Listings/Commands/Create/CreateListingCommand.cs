@@ -3,8 +3,10 @@ using System.Threading.Tasks;
 using MassTransit;
 using MediatR;
 using Seller.Listings.Application.Listings.Listings.Commands.Common;
+using Seller.Listings.Application.Listings.UserSellers;
 using Seller.Listings.Domain.Listings.Factories;
 using Seller.Shared.Messages.Offers;
+using Seller.Shared.Services.Identity;
 
 namespace Seller.Listings.Application.Listings.Listings.Commands.Create
 {
@@ -13,29 +15,37 @@ namespace Seller.Listings.Application.Listings.Listings.Commands.Create
         public class CreateListingCommandHandler : IRequestHandler<CreateListingCommand, ListingCreateResponseModel>
         {
             private readonly IListingRepository listingRepository;
+            private readonly IUserSellerRepository userSellerRepository;
             private readonly IListingFactory listingFactory;
+            private readonly ICurrentUserService currentUserService;
             private readonly IBus publisher;
 
             public CreateListingCommandHandler(
                 IListingRepository listingRepository,
                 IListingFactory listingFactory,
-                IBus publisher)
+                IUserSellerRepository userSellerRepository,
+                IBus publisher,
+                ICurrentUserService currentUserService)
             {
                 this.listingRepository = listingRepository;
                 this.listingFactory = listingFactory;
                 this.publisher = publisher;
+                this.currentUserService = currentUserService;
+                this.userSellerRepository = userSellerRepository;
             }
 
             public async Task<ListingCreateResponseModel> Handle(
                 CreateListingCommand request,
                 CancellationToken cancellationToken)
             {
+                var seller = await userSellerRepository.GetIdByUser(currentUserService.UserId, cancellationToken);
+
                 var listing = listingFactory
                     .WithTitle(request.Title)
                     .WithImageUrl(request.ImageUrl)
                     .WithDescription(request.Description)
                     .WithPrice(request.Price)
-                    .WithSellerId(request.SellerId)
+                    .WithSellerId(seller.Id!)
                     .Build();
 
                 await this.listingRepository.Save(listing, cancellationToken);

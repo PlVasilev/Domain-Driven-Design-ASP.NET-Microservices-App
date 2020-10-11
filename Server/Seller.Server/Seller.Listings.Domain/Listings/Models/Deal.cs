@@ -18,7 +18,7 @@ namespace Seller.Listings.Domain.Listings.Models
             BuyerId = buyerId;
             CreatedOn = DateTime.UtcNow;
             IsDeleted = false;
-            ListingId = ListingId;
+            ListingId = listingId;
             Price = price;
             SellerId = sellerId;
         }
