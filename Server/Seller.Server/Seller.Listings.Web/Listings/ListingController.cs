@@ -19,12 +19,12 @@ namespace Seller.Listings.Web.Listings
     {
         [HttpGet]
         [Route(nameof(All))]
-        public async Task<ActionResult<IReadOnlyCollection<AllListingResponseModel>>> All( AllListingQuery query) => 
+        public async Task<ActionResult<IReadOnlyCollection<AllListingResponseModel>>> All([FromRoute] AllListingQuery query) => 
         await this.Send(query);
 
         [HttpGet]
         [Route(nameof(Mine))]
-        public async Task<ActionResult<IReadOnlyCollection<AllListingResponseModel>>> Mine(MineListingQuery query) =>
+        public async Task<ActionResult<IReadOnlyCollection<AllListingResponseModel>>> Mine([FromRoute] MineListingQuery query) =>
             await this.Send(query);
 
         [HttpGet]

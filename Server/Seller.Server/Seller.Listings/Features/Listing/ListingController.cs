@@ -11,72 +11,72 @@ namespace Seller.Listings.Features.Listing
     using Models;
     using Services.Interfaces;
 
-    [Authorize]
-    public class ListingController : ApiController
-    {
+    //[Authorize]
+    //public class ListingController : ApiController
+    //{
 
-        private readonly IListingService listingService;
-        private readonly ICurrentUserService currentUser;
-        private readonly ISellerService sellerService;
+    //    private readonly IListingService listingService;
+    //    private readonly ICurrentUserService currentUser;
+    //    private readonly ISellerService sellerService;
 
-        public ListingController(IListingService listingService, ICurrentUserService currentUser, ISellerService sellerService)
-        {
-            this.listingService = listingService;
-            this.currentUser = currentUser;
-            this.sellerService = sellerService;
-        }
+    //    public ListingController(IListingService listingService, ICurrentUserService currentUser, ISellerService sellerService)
+    //    {
+    //        this.listingService = listingService;
+    //        this.currentUser = currentUser;
+    //        this.sellerService = sellerService;
+    //    }
 
  
-        [HttpGet]
-        [Route(nameof(All))]
-        public async Task<IEnumerable<ListingAllResponseModel>> All() => await listingService.All();
+    //    [HttpGet]
+    //    [Route(nameof(All))]
+    //    public async Task<IEnumerable<ListingAllResponseModel>> All() => await listingService.All();
 
-        [HttpGet]
-        [Route(nameof(Mine))]
-        public async Task<IEnumerable<ListingAllResponseModel>> Mine() => await listingService.Mine(UserId());
+    //    [HttpGet]
+    //    [Route(nameof(Mine))]
+    //    public async Task<IEnumerable<ListingAllResponseModel>> Mine() => await listingService.Mine(UserId());
 
-        [HttpGet]
-        [Route("{id}")]
-        public async Task<ActionResult<ListingDetailsResponseModel>> Details(string id) => await listingService.Details(id);
+    //    [HttpGet]
+    //    [Route("{id}")]
+    //    public async Task<ActionResult<ListingDetailsResponseModel>> Details(string id) => await listingService.Details(id);
 
-        [HttpGet]
-        [Route("GetTitleAndSellerName/{id}")]
-        public async Task<ActionResult<ListingTitleAndSellerNameResponseModel>> GetTitleAndSellerName(string id) => await listingService.GetTitleAndSellerName(id);
+    //    [HttpGet]
+    //    [Route("GetTitleAndSellerName/{id}")]
+    //    public async Task<ActionResult<ListingTitleAndSellerNameResponseModel>> GetTitleAndSellerName(string id) => await listingService.GetTitleAndSellerName(id);
 
-        [HttpPut]
-        [Route(nameof(Update))]
-        public async Task<ActionResult> Update(ListingUpdateRequestModel model)
-        {
-            var updated = await listingService.Update(model.Id, model.Title, model.Description, model.ImageUrl,
-                model.Price, UserId());
+    //    [HttpPut]
+    //    [Route(nameof(Update))]
+    //    public async Task<ActionResult> Update(ListingUpdateRequestModel model)
+    //    {
+    //        var updated = await listingService.Update(model.Id, model.Title, model.Description, model.ImageUrl,
+    //            model.Price, UserId());
 
-            if (!updated) return BadRequest();
+    //        if (!updated) return BadRequest();
             
-            return Ok();
-        }
+    //        return Ok();
+    //    }
 
-        [HttpPut]
-        [Route(nameof(Deal))]
-        public async Task<ActionResult<bool>> Deal(string id) => await listingService.Deal(id);
+    //    [HttpPut]
+    //    [Route(nameof(Deal))]
+    //    public async Task<ActionResult<bool>> Deal(string id) => await listingService.Deal(id);
 
-        [HttpDelete]
-        [Route("{id}")]
-        public async Task<ActionResult> Delete(string id)
-        {
-            var deleted = await listingService.Delete(id, UserId());
+    //    [HttpDelete]
+    //    [Route("{id}")]
+    //    public async Task<ActionResult> Delete(string id)
+    //    {
+    //        var deleted = await listingService.Delete(id, UserId());
 
-            if (!deleted) return BadRequest();
+    //        if (!deleted) return BadRequest();
             
-            return Ok();
-        }
+    //        return Ok();
+    //    }
 
-        [HttpPost]
-        [Route(nameof(Create))]
-        public async Task<ActionResult<ListingCreateResponseModel>> Create(ListingCreateRequestModel model) => await 
-            listingService.Create(model.Title, model.Description, model.ImageUrl, model.Price, UserId());
+    //    [HttpPost]
+    //    [Route(nameof(Create))]
+    //    public async Task<ActionResult<ListingCreateResponseModel>> Create(ListingCreateRequestModel model) => await 
+    //        listingService.Create(model.Title, model.Description, model.ImageUrl, model.Price, UserId());
 
 
-        private string UserId() => sellerService.GetIdByUser(currentUser.UserId).Result.Id;
+    //    private string UserId() => sellerService.GetIdByUser(currentUser.UserId).Result.Id;
 
-    }
+    //}
 }

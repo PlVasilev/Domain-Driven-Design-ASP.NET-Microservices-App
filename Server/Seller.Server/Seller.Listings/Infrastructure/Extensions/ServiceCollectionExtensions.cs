@@ -13,10 +13,10 @@ namespace Seller.Listings.Infrastructure.Extensions
 
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddAppServices(this IServiceCollection services) => services
-            .AddTransient<ISellerService, SellerService>()
-            .AddTransient<IListingService, ListingService>()
-            .AddTransient<IDealService, DealService>();
+        public static IServiceCollection AddAppServices(this IServiceCollection services) => services;
+           // .AddTransient<ISellerService, SellerService>()
+           // .AddTransient<IListingService, ListingService>()
+           // .AddTransient<IDealService, DealService>();
           
 
         public static IServiceCollection AddSwagger(this IServiceCollection services) => services

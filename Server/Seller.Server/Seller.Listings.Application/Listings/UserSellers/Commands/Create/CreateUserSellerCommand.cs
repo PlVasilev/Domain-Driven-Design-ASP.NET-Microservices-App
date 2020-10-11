@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Seller.Listings.Application.Listings.UserSellers.Common;
 using Seller.Listings.Domain.Listings.Factories;
+using Seller.Shared.Services.Identity;
 
 namespace Seller.Listings.Application.Listings.UserSellers.Commands.Create
 {
@@ -12,13 +13,16 @@ namespace Seller.Listings.Application.Listings.UserSellers.Commands.Create
         {
             private readonly IUserSellerRepository sellerRepository;
             private readonly IUserSellerFactory sellerFactory;
+            private readonly ICurrentUserService currentUserService;
 
             public CreateUserSellerHandler(
                 IUserSellerRepository sellerRepository,
-                IUserSellerFactory sellerFactory)
+                IUserSellerFactory sellerFactory,
+                ICurrentUserService currentUserService)
             {
                 this.sellerRepository = sellerRepository;
                 this.sellerFactory = sellerFactory;
+                this.currentUserService = currentUserService;
             }
 
             public async Task<bool> Handle(
@@ -31,7 +35,7 @@ namespace Seller.Listings.Application.Listings.UserSellers.Commands.Create
                         .WithLastName(request.LastName)
                         .WithEmail(request.Email)
                         .WithPhoneNumber(request.PhoneNumber)
-                        .WithUserId(request.UserId)
+                        .WithUserId(currentUserService.UserId)
                         .Build();
 
                    await this.sellerRepository.Save(seller, cancellationToken);

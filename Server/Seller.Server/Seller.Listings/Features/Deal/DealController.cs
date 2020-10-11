@@ -8,31 +8,31 @@ using Seller.Shared.Controllers;
 
 namespace Seller.Listings.Features.Deal
 {
-    [Authorize]
-    public class DealController : ApiController
-    {
-        private readonly IDealService dealService;
+    //[Authorize]
+    //public class DealController : ApiController
+    //{
+    //    private readonly IDealService dealService;
 
-        public DealController(IDealService dealService)
-        {
-            this.dealService = dealService;
-        }
+    //    public DealController(IDealService dealService)
+    //    {
+    //        this.dealService = dealService;
+    //    }
 
-        [HttpPost]
-        [Route(nameof(Create))]
-        public async Task<ActionResult<bool>> Create(DealCreateRequestModel model) => await
-            dealService.Create(model);
+    //    [HttpPost]
+    //    [Route(nameof(Create))]
+    //    public async Task<ActionResult<bool>> Create(DealCreateRequestModel model) => await
+    //        dealService.Create(model);
 
-        [HttpGet]
-        [Route("BuyDeals/{id}")]
-        public async Task<List<DealResponseModel>> BuyDeals(string id) => await
-            dealService.BuyDeals(id);
+    //    [HttpGet]
+    //    [Route("BuyDeals/{id}")]
+    //    public async Task<List<DealResponseModel>> BuyDeals(string id) => await
+    //        dealService.BuyDeals(id);
 
-        [HttpGet]
-        [Route("SaleDeals/{id}")]
-        public async Task<List<DealResponseModel>> SaleDeals(string id) => await
-            dealService.SaleDeals(id);
+    //    [HttpGet]
+    //    [Route("SaleDeals/{id}")]
+    //    public async Task<List<DealResponseModel>> SaleDeals(string id) => await
+    //        dealService.SaleDeals(id);
 
 
-    }
+    //}
 }

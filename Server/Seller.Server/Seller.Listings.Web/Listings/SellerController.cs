@@ -6,18 +6,18 @@ using Seller.Listings.Application.Listings.UserSellers.Queries.GetByUserId;
 
 namespace Seller.Listings.Web.Listings
 {
-    [Authorize]
+    
     public class SellerController : ApiController
     {
 
-
+        [Authorize]
         [HttpGet]
         [Route("Id")]
-        public async Task<ActionResult<SellerIdResponseModel>> GetSellerId(UserSellerGetByUserIdQuery query) =>
+        public async Task<ActionResult<SellerIdResponseModel>> GetSellerId([FromRoute] UserSellerGetByUserIdQuery query) =>
             await Send(query);
 
 
-
+        [Authorize]
         [HttpPost]
         [Route(nameof(Create))]
         public async Task<ActionResult> Create(CreateUserSellerCommand command)

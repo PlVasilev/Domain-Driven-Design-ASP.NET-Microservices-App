@@ -9,7 +9,7 @@ using Seller.Listings.Data;
 
 namespace Seller.Listings.Migrations
 {
-    [DbContext(typeof(ListingsDbContext))]
+   // [DbContext(typeof(ListingsDbContext))]
     [Migration("20200708084428_InitalMigration")]
     partial class InitalMigration
     {

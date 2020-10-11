@@ -1,3 +1,8 @@
+using Seller.Listings.Application;
+using Seller.Listings.Domain;
+using Seller.Listings.Infrastructure;
+using Seller.Listings.Web;
+
 namespace Seller.Listings
 {
     using Data;
@@ -19,11 +24,19 @@ namespace Seller.Listings
 
         public void ConfigureServices(IServiceCollection services) =>
             services
-                .AddWebService<ListingsDbContext>(this.Configuration)
-                .AddAppServices()
+                .AddDomain()
+                .AddApplication(this.Configuration)
+                .AddInfrastructure(this.Configuration)
+                .AddApplicationSettings(this.Configuration)
+                .AddJwtAuthentication(this.Configuration)
                 .AddSwagger()
                 .AddMessaging()
-                .AddApiControllers();
+                .AddWebComponents();
+                //.AddWebService<ListingsDbContext>(this.Configuration)
+                //.AddAppServices()
+               // .AddSwagger();
+                //.AddMessaging()
+                //.AddApiControllers();
         
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) =>

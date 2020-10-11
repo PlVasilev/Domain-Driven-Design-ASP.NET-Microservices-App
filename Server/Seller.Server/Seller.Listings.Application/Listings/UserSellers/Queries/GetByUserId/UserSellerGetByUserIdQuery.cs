@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using MediatR;
 using Seller.Shared.DDD.Application;
+using Seller.Shared.Services.Identity;
 
 namespace Seller.Listings.Application.Listings.UserSellers.Queries.GetByUserId
 {
@@ -10,16 +11,18 @@ namespace Seller.Listings.Application.Listings.UserSellers.Queries.GetByUserId
         public class UserSellerGetByUserIdQueryHandler : IRequestHandler<UserSellerGetByUserIdQuery, SellerIdResponseModel>
         {
             private readonly IUserSellerRepository sellerRepository;
+            private readonly ICurrentUserService currentUserService;
 
-            public UserSellerGetByUserIdQueryHandler(IUserSellerRepository sellerRepository)
+            public UserSellerGetByUserIdQueryHandler(IUserSellerRepository sellerRepository, ICurrentUserService currentUserService)
             {
                 this.sellerRepository = sellerRepository;
+                this.currentUserService = currentUserService;
             }
 
             public async Task<SellerIdResponseModel> Handle(
                 UserSellerGetByUserIdQuery request,
                 CancellationToken cancellationToken)
-                => await this.sellerRepository.GetIdByUser(request.Id, cancellationToken);
+                => await this.sellerRepository.GetIdByUser(currentUserService.UserId, cancellationToken);
         }
     }
 }

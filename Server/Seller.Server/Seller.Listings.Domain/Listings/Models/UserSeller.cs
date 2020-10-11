@@ -50,7 +50,7 @@ namespace Seller.Listings.Domain.Listings.Models
             ValidateUserName(userName);
             ValidateFirstName(firstName);
             ValidateLastName(lastName);
-            ValidateEmail(email);
+            ValidateEmailLength(email);
             ValidatePhoneNumber(phoneNumber);
             ValidateUserId(userId);
         }
@@ -76,14 +76,18 @@ namespace Seller.Listings.Domain.Listings.Models
                 MaxNameLength,
                 nameof(this.LastName));
 
-        private void ValidateEmail(string email)
-            => Guard.AgainstNotValidEmail<InvalidUserSellerException>(
+        private void ValidateEmailLength(string email)
+            => Guard.ForStringLength<InvalidUserSellerException>(
                 email,
+                MinNameLength,
+                MaxNameLength,
                 nameof(this.Email));
 
         private void ValidatePhoneNumber(string phoneNumber)
-            => Guard.AgainstNotValidEmail<InvalidUserSellerException>(
+            => Guard.ForStringLength<InvalidUserSellerException>(
                 phoneNumber,
+                MinNameLength,
+                MaxNameLength,
                 nameof(this.PhoneNumber));
 
 
