@@ -26,7 +26,7 @@ namespace Seller.Listings.Domain.Listings.Models
 
         }
 
-        private Listing()
+        internal Listing()
         {
             Title = default!;
             Created = default;

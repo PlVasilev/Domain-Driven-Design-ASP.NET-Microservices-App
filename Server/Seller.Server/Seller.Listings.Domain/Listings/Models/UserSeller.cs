@@ -22,7 +22,7 @@ namespace Seller.Listings.Domain.Listings.Models
             IsDeleted = false;
         }
 
-        private UserSeller()
+        internal UserSeller()
         {
             UserName = default!;
             FirstName = default!;

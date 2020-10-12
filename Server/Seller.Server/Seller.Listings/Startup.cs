@@ -5,7 +5,6 @@ using Seller.Listings.Web;
 
 namespace Seller.Listings
 {
-    using Data;
     using Seller.Shared.Infrastructure;
     using Infrastructure.Extensions;
     using Microsoft.AspNetCore.Builder;
@@ -32,12 +31,6 @@ namespace Seller.Listings
                 .AddSwagger()
                 .AddMessaging()
                 .AddWebComponents();
-                //.AddWebService<ListingsDbContext>(this.Configuration)
-                //.AddAppServices()
-               // .AddSwagger();
-                //.AddMessaging()
-                //.AddApiControllers();
-        
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) =>
             app.UseWebService(env)

@@ -1,9 +1,9 @@
 ﻿using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
-using Seller.Listings.Domain.Listings.Factories;
+using Seller.Offers.Domain.Offers.Factories;
 using Xunit;
 
-namespace Seller.Listings.Domain
+namespace Seller.Offers.Domain
 {
     public class DomainConfigurationSpecs
     {
@@ -20,19 +20,11 @@ namespace Seller.Listings.Domain
 
             // Assert
             services
-                .GetService<IListingFactory>()
+                .GetService<IOfferFactory>()
                 .Should()
                 .NotBeNull();
           
-            services
-                .GetService<IUserSellerFactory>()
-                .Should()
-                .NotBeNull();
-
-            services
-                .GetService<IDealFactory>()
-                .Should()
-                .NotBeNull();
+            
         }
     }
 }
