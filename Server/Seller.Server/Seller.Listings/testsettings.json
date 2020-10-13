@@ -1,0 +1,11 @@
+{
+  "General": {
+    "WebAssemblyName": "Seller.Listings"
+  },
+  "AppSettings": {
+    "Secret": "Avengers Assemble"
+  },
+  "ConnectionStrings": {
+    "DefaultConnection": "My Fake Connection String"
+  }
+}

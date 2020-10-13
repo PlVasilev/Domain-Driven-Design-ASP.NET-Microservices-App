@@ -6,6 +6,13 @@
     <GenerateProgramFile>false</GenerateProgramFile>
   </PropertyGroup>
 
+  <ItemGroup Condition="'$(Configuration)' == 'Release'">
+    <Compile Remove="**\*.Specs.cs" />
+    <Content Update="testsettings.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="5.10.3" />
     <PackageReference Include="MyTested.AspNetCore.Mvc.Universe" Version="3.1.2" />
@@ -28,6 +35,12 @@
     <ProjectReference Include="..\Seller.Listings.Infrastructure\Seller.Listings.Infrastructure.csproj" />
     <ProjectReference Include="..\Seller.Listings.Web\Seller.Listings.Web.csproj" />
     <ProjectReference Include="..\Seller.Shared\Seller.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="testsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
