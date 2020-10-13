@@ -1,5 +1,5 @@
 # Domain Driven Design ASP.NET-Microservices-App - Seller
-##### ASP.NET Core Server + Angular Client
+#### ASP.NET Core Server + Angular Client
 
 ### Seller APP Idea
 This is **extreamly** simple app for Listing Properties on the market, make offfers and make deal for them.
@@ -10,7 +10,7 @@ This is **extreamly** simple app for Listing Properties on the market, make offf
 **Seller.Shared.DDD**  for containing All **Domain Driven Design Common Code**
 
 ### Domain Driven Design idea in this app
-####Here My goal is simple **Clean Architecture** as it could be that easy ... so we have to Split the app on Layers 
+#### Here My goal is simple **Clean Architecture** as it could be that easy ... so we have to Split the app on Layers 
 1. Domain Layer - Entities - no data anotations, validations, custom domain exceptions, private setters, internal constuctors, public factories only for the aggregate roots
 2. Application Layer - using Intefaces and Commands (All but GET) & Queries (GET) for every call from the controllers, using MediatoR, using Input and Output Models
 3. Infrastructure Layer - Using Repository patern
@@ -20,7 +20,7 @@ This is **extreamly** simple app for Listing Properties on the market, make offf
 ##### In a few words on my FIRST DDD app I just tryed to split the app and integrate as much DDD concepts as I can and have the client app to asure myself if wroks as intended so these are the flows in the app that I can see:
 
 ### What is Missing from Domain Driven Design Consepts or simply can be done better:
-1. Domain - Value Objects, Enumerations, Events, validations only in domain layer
+1. Domain - Value Objects Not used, Enumerations Not used, Events Not used, Validations only in domain layer
 2. Application - Automapper is Not used 
 3. Infrastructure - No DB objects
 4. Test - The app is Not truly tested only few test are made
