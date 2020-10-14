@@ -10,7 +10,7 @@ This is **extreamly** simple app for Listing Properties on the market, make offf
 **Seller.Shared.DDD**  for containing All **Domain Driven Design Common Code**
 
 ### Domain Driven Design idea in this app
-#### Here My goal is simple **Clean Architecture** as it could be that easy ... so we have to Split the app on Layers 
+#### My goal is Clean Architecture, so we have to Split the app on Layers 
 1. Domain Layer - Entities - no data anotations, validations, custom domain exceptions, private setters, internal constuctors, public factories only for the aggregate roots
 2. Application Layer - using Intefaces and Commands (All but GET) & Queries (GET) for every call from the controllers, using MediatoR, using Input and Output Models
 3. Infrastructure Layer - Using Repository patern
@@ -24,14 +24,14 @@ This is **extreamly** simple app for Listing Properties on the market, make offf
 2. Application - Automapper is Not used 
 3. Infrastructure - No DB objects
 4. Test - The app is Not truly tested only few test are made
-5. Offers MS Repository is too messy with a lot of logic. On Listing MS the tree repositories there are a lot cleaner.
+5. Offers MS Repository is too messy with a lot of logic. On Listing MS the 3 repositories there are a lot cleaner.
 
 
 
 ## App content
 ##### Clent Url http://localhost:4200
 - Clent App Angular
-- Server Apps ASP.NET 3.1 - **9 Microservices**
+- Server Apps ASP.NET 3.1 - **7 Microservices**
 	1. Seller.Admin - MVC only for Admin http://localhost:5013
 	2. Seller.Identity - Api with DB - Entity Asp.Net.USer
 	3. Seller.Listings - Api with DB - Entities - Seller : User, Lising, Deals and Messages from Masstransit
