@@ -24,7 +24,6 @@ This is **extreamly** simple app for Listing Properties on the market, make offf
 2. Application - Automapper is Not used 
 3. Infrastructure - No DB objects
 4. Test - The app is Not truly tested only few test are made
-5. Offers MS Repository is too messy with a lot of logic. On Listing MS the 3 repositories there are a lot cleaner.
 
 
 
