@@ -1,8 +1,9 @@
 # Domain Driven Design ASP.NET-Microservices-App - Seller
-#### ASP.NET Core Server + Angular Client
+
+### ASP.NET Core Server + Angular Client
 
 ### Seller APP Idea
-This is **extreamly** simple app for Listing Properties on the market, make offfers and make deal for them.
+This is **extreamly** simple app for Listing Properties on the market, make offers and make deal for them.
 
 ## Domain Driven Design part
 **Seller.Listings** Microservice is **reworked with DDD**
@@ -10,12 +11,12 @@ This is **extreamly** simple app for Listing Properties on the market, make offf
 **Seller.Shared.DDD**  for containing All **Domain Driven Design Common Code**
 
 ### Domain Driven Design idea in this app
-#### My goal is Clean Architecture, so we have to Split the app on Layers 
+#### My goal is Clean Architecture, so we have to Split the app into Layers 
 1. Domain Layer - Entities - no data anotations, validations, custom domain exceptions, private setters, internal constuctors, public factories only for the aggregate roots
 2. Application Layer - using Intefaces and Commands (All but GET) & Queries (GET) for every call from the controllers, using MediatoR, using Input and Output Models
 3. Infrastructure Layer - Using Repository patern
 4. Presentation Layer - using Controllers with No application logic
-5. Test - App is generaly Tested with the Client, but there are some thest on Listings MS Domain Layer, Infrastructure Layer and Start Project
+5. Test - App is generaly Tested with the Client App, but there are some test on Listings MS Domain Layer, Infrastructure Layer and Start Project
 
 ##### In a few words on my FIRST DDD app I just tryed to split the app and integrate as much DDD concepts as I can and have the client app to asure myself if wroks as intended so these are the flows in the app that I can see:
 
@@ -25,10 +26,8 @@ This is **extreamly** simple app for Listing Properties on the market, make offf
 3. Infrastructure - No DB objects
 4. Test - The app is Not truly tested only few test are made
 
-
-
 ## App content
-##### Clent Url http://localhost:4200
+#### Clent Url http://localhost:4200
 - Clent App Angular
 - Server Apps ASP.NET 3.1 - **7 Microservices**
 	1. Seller.Admin - MVC only for Admin http://localhost:5013
